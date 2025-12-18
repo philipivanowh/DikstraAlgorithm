@@ -27,32 +27,39 @@ public abstract class PathFindingService {
     }
 
     private void relax(Tile node, Tile predecessor, double edgeWeight, TilePriorityQ priorityQ){
-        if(node.costEstimate > predecessor.costEstimate + edgeWeight){
-            priorityQ.updateKeys(node,predecessor,edgeWeight + predecessor.costEstimate);
+        double newCost = predecessor.costEstimate + edgeWeight;
+
+        if(node.costEstimate > newCost){
+            priorityQ.updateKeys(node, predecessor, newCost);
         }
     }
 
-    protected void DikstraAlgorithm(Tile start,Tile end){
-        init_single_source(g.vertices,start);
+    protected void DikstraAlgorithm(Tile start, Tile end){
+        init_single_source(g.vertices, start);
 
+        // visited set to track finalized vertices
         HashMap<Tile, Boolean> visited = new HashMap<>();
 
         TilePriorityQ priorityQ = new TilePriorityQ(g.vertices);
 
         while(!priorityQ.isEmpty()){
-
             Tile curr = priorityQ.removeMin();
 
-            if(visited.containsKey(curr)) continue;
-            visited.put(curr, true);
+            // Mark as visited (finalized)
+            visited.put(curr,true);
 
+            // Early termination if we reached the destination
+            if(curr == end) break;
 
-            if(curr==end) break;
-
+            // Relax all outgoing edges
             for(Graph.Edge edge : g.getEdgesOfTile(curr)){
-                relax(edge.getEnd(),curr, edge.weight,priorityQ);
-            }
+                Tile neighbor = edge.getEnd();
 
+                // Only relax if neighbor hasn't been finalized yet
+                if(!visited.containsKey(neighbor)){
+                    relax(neighbor, curr, edge.weight, priorityQ);
+                }
+            }
         }
     }
 
