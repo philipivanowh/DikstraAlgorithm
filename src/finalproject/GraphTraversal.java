@@ -9,7 +9,6 @@ import java.util.LinkedList;
 public class GraphTraversal
 {
 
-
 	//TODO level 1: implement BFS traversal starting from s
 	public static ArrayList<Tile> BFS(Tile s)
 	{

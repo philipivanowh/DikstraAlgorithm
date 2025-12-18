@@ -32,7 +32,7 @@ public abstract class PathFindingService {
         }
     }
 
-    private void DikstraAlgorithm(Tile start,Tile end){
+    protected void DikstraAlgorithm(Tile start,Tile end){
         init_single_source(g.vertices,start);
 
         HashMap<Tile, Boolean> visited = new HashMap<>();

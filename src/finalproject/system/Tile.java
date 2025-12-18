@@ -3,7 +3,7 @@ package finalproject.system;
 import java.util.ArrayList;
 
 public abstract class Tile extends TileComponent {
- 
+
     public double distanceCost;
     public double timeCost;
     public double damageCost;
@@ -15,18 +15,18 @@ public abstract class Tile extends TileComponent {
     public int nodeID;
 
     // These will become useful when implementing Dijkstra
-    public Tile predecessor; 
+    public Tile predecessor;
     public double costEstimate;
-    
-    
+
+
     //connect adjacent tiles with edge
     public ArrayList<Tile> adjacentTiles = new ArrayList<>();
 
     public Tile() {}
-    
+
     public Tile(double dist, double time, double dmg) {
         super();
-        
+
         this.distanceCost = dist;
         this.timeCost = time;
         this.damageCost = dmg;

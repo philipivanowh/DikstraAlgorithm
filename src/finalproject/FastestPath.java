@@ -2,8 +2,6 @@ package finalproject;
 
 import finalproject.system.Tile;
 
-import java.util.ArrayList;
-
 public class FastestPath extends PathFindingService {
     //TODO level 6: find time prioritized path
     public FastestPath(Tile start) {
@@ -13,8 +11,6 @@ public class FastestPath extends PathFindingService {
 
 	@Override
 	public void generateGraph() {
-
-
         this.g = new Graph(GraphTraversal.BFS(this.source));
 
         //add Edges
